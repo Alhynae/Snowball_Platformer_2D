@@ -8,8 +8,10 @@ public class Snowy_Moves : MonoBehaviour
     public float moveSpeed;
     public float jumpForce;
 
-    public bool isJumping;
-    public bool isGrouded;
+    //Cheker State
+    private bool isJumping;
+    private bool isGrouded;
+    private bool isDashing;
 
     public Transform groundCheckLeft;
     public Transform groundCheckRight;
@@ -28,6 +30,7 @@ public class Snowy_Moves : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Check if the player is grounded
         isGrouded = Physics2D.OverlapArea(groundCheckLeft.position, groundCheckRight.position);
 
         float horizontalMovement= Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
@@ -47,12 +50,14 @@ public class Snowy_Moves : MonoBehaviour
         animator.SetFloat("Speed", characterVelocity);
     }
 
+    // Controller
     void MovePlayer(float _horizontalMovement)
     {
 
         Vector3 targetVelocity = new Vector2(_horizontalMovement, rb.velocity.y);
         rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocity, .05f);
 
+        //Jump
         if(isJumping == true)
         {
 
@@ -60,8 +65,30 @@ public class Snowy_Moves : MonoBehaviour
             isJumping = false;
 
         }
+        //Dash
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+            StartCoroutine ("DashMove");
+            }
     }
 
+       IEnumerator DashMove()
+        {
+            
+            if (isDashing == false)
+            {
+                isDashing = true;
+                moveSpeed += 500;
+                yield return new WaitForSeconds(.3f);
+                moveSpeed -= 500;
+                isDashing = false;
+            }
+             
+        }
+           
+    
+
+    //Make the sprite flip
     void Flip(float _velocity)
     {
         if(_velocity > 0.1f)

@@ -41,18 +41,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: HUD
-    uniqueID: 1372253191
-    locked: 0
-  - name: Player
-    uniqueID: 2072772531
+  - name: Background
+    uniqueID: 3747205875
     locked: 0
   - name: Level_Design
     uniqueID: 3974417959
     locked: 0
+  - name: Player
+    uniqueID: 2072772531
+    locked: 0
   - name: Miscs
     uniqueID: 3709847959
     locked: 0
-  - name: Background
-    uniqueID: 3747205875
+  - name: HUD
+    uniqueID: 1372253191
     locked: 0
