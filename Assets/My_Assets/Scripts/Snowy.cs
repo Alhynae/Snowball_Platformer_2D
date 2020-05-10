@@ -35,7 +35,7 @@ public class Snowy : MonoBehaviour
     private float cooldownDashTimer;
     private float dashTime;
     private int direction;
-    private bool isDashing;
+    public bool isDashing;
 
     private void Start()
     {
