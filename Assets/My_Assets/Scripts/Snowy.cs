@@ -41,7 +41,7 @@ public class Snowy : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         dashTime = startDashTime;
-        growthState = maxGrowthState;
+        growthState = 1;
         snowyHUD.SetMaxGrowth(maxGrowthState);
     }
 
