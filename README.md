@@ -4,20 +4,21 @@ School Project
 Overview
 
 Theme / Setting / Genre
-	- <Winter collectible platformer>
+	- Winter collectible platformer
   
 Core Gameplay Mechanics Brief
-	- <Growth>
+	- Growth
   
 Targeted platforms
-	- <PC>
-	- <Android>
+	- PC
+	- Android
   
 Influences (Brief)
+
 	- < Moonlighter >
 		- <Game>
-    - The graphisme without outline, simple but effective and an great ambiance.
-
+    		- The graphisme without outline, simple but effective and an great ambiance.
+		
 	- < Celeste >
 		- <Game>
 		- The cold environnement
