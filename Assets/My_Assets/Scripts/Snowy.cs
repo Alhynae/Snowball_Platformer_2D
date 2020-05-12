@@ -6,7 +6,8 @@ public class Snowy : MonoBehaviour
 {
     private Rigidbody2D rb;
     //Sats
-    public float speed;
+    public float baseSpeed;
+    private float speed;
     public int maxGrowthState = 3;
     private int growthState;
 
@@ -21,15 +22,19 @@ public class Snowy : MonoBehaviour
 
     //Jump
     private float jumpTimeCounter;
-    public float jumpForce;
+    public float baseJumpForce;
+    private float jumpForce;
     public float jumpTime;
     private bool isJumping;
     private bool facingRight = true;
 
     //Dash
-    public float dashSpeed = 30f;
+    public float baseDashSpeed = 30f;
+    public float dashSpeed;
+    
     public float startDashTime = 0.1f;
     public int dashReady;
+    private bool dashAvailable;
 
     public float cooldownDash = 2f;
     private float cooldownDashTimer;
@@ -43,6 +48,11 @@ public class Snowy : MonoBehaviour
         dashTime = startDashTime;
         growthState = 1;
         snowyHUD.SetMaxGrowth(maxGrowthState);
+        snowyHUD.SetGrowth(growthState);
+
+        speed = baseSpeed;
+        jumpForce = baseJumpForce;
+        dashSpeed = baseDashSpeed;
     }
 
     private void Update()
@@ -55,18 +65,10 @@ public class Snowy : MonoBehaviour
         animator.SetBool("isDashing", isDashing);
         
         //Function
+        Growth();
         PlayerMovements();
+       
         //DEBUG
-
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            TakeDamage(1);
-        }
-
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            Healed(1);
-        }
 
     }
 
@@ -123,58 +125,60 @@ public class Snowy : MonoBehaviour
 
         //Dash
         
-        if (cooldownDashTimer > 0) //Cooldown
+        if (dashAvailable == true)
         {
-            dashReady = 0;
-            snowyHUD.SetDashIcon(dashReady);
-            cooldownDashTimer -= Time.deltaTime;
-        } else if (cooldownDashTimer < 0)
-        {
-            dashReady = 1;
-            snowyHUD.SetDashIcon(dashReady);
-            cooldownDashTimer = 0;
-        }
-
-        if (direction == 0)
-        {
-            if (Input.GetKeyDown(KeyCode.LeftShift) && cooldownDashTimer == 0)
+            if (cooldownDashTimer > 0) //Cooldown
             {
-                cooldownDashTimer = cooldownDash;
-                if (moveInput < 0)
-                {
-                    direction = 1;
-                }
-                else if (moveInput > 0)
-                {
-                    direction = 2;
-                }
+                dashReady = 0;
+                snowyHUD.SetDashIcon(dashReady);
+                cooldownDashTimer -= Time.deltaTime;
+            } else if (cooldownDashTimer < 0)
+            {
+                dashReady = 1;
+                snowyHUD.SetDashIcon(dashReady);
+                cooldownDashTimer = 0;
             }
-        }
-        else
-        {
-            if (dashTime <= 0)
+
+            if (direction == 0)
             {
-                direction = 0;
-                dashTime = startDashTime;
-                rb.velocity = Vector2.zero;
-                isDashing = false;
+                if (Input.GetKeyDown(KeyCode.LeftShift) && cooldownDashTimer == 0)
+                {
+                    cooldownDashTimer = cooldownDash;
+                    if (moveInput < 0)
+                    {
+                        direction = 1;
+                    }
+                    else if (moveInput > 0)
+                    {
+                        direction = 2;
+                    }
+                }
             }
             else
             {
-                isDashing = true;
-                dashTime -= Time.deltaTime;
-
-                if (direction == 1)
+                if (dashTime <= 0)
                 {
-                    rb.velocity = Vector2.left * dashSpeed;
+                    direction = 0;
+                    dashTime = startDashTime;
+                    rb.velocity = Vector2.zero;
+                    isDashing = false;
                 }
-                else if (direction == 2)
+                else
                 {
-                    rb.velocity = Vector2.right * dashSpeed;
+                    isDashing = true;
+                    dashTime -= Time.deltaTime;
+
+                    if (direction == 1)
+                    {
+                        rb.velocity = Vector2.left * dashSpeed;
+                    }
+                    else if (direction == 2)
+                    {
+                        rb.velocity = Vector2.right * dashSpeed;
+                    }
                 }
             }
         }
-
     }
 
     void Growth()
@@ -185,34 +189,43 @@ public class Snowy : MonoBehaviour
             
             if (growthState == 1)
             {
-
+                dashAvailable = true;
+                dashSpeed = baseDashSpeed;
+                speed = baseSpeed;
+                jumpForce = baseJumpForce;
+                snowyHUD.SetGrowth(growthState);
             }
             if (growthState == 2)
             {
-
+                dashAvailable = true;
+                dashSpeed = baseDashSpeed - 5;
+                speed = baseSpeed - 1;
+                jumpForce = baseJumpForce - 1;
+                snowyHUD.SetGrowth(growthState);
             }
             if (growthState == 3)
             {
-
+                dashAvailable = false;
+                speed = baseSpeed - 2;
+                jumpForce = baseJumpForce - 2;
+                snowyHUD.SetGrowth(growthState);
             }
 
         } else {
 
-            //DEATH
+            snowyHUD.SetGrowth(growthState);
 
         }       
 
     }
 
-    void TakeDamage(int damage)
+    public void Heat()
     {
-        growthState -= damage;
-        snowyHUD.SetGrowth(growthState);
+        growthState --;
     }
 
-    void Healed(int healed)
+    public void Cold()
     {
-        growthState += healed;
-        snowyHUD.SetGrowth(growthState);
+        growthState ++;
     }
 }
