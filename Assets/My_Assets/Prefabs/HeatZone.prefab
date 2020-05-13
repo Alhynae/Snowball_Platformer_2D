@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1287279626297358893}
   - component: {fileID: 1287279626297358892}
-  - component: {fileID: 455403004547259560}
   m_Layer: 0
   m_Name: HeatZone
   m_TagString: Heat
@@ -62,16 +61,3 @@ PolygonCollider2D:
       - {x: -1.9180756, y: -2.6216202}
       - {x: 17.58799, y: -2.5767517}
       - {x: 17.92953, y: 1.0480194}
---- !u!114 &455403004547259560
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1287279626297358890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92e1e01bd2a17134b8cf9fc10022b05c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  snowy: {fileID: 0}
