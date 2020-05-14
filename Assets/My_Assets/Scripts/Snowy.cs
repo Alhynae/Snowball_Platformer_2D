@@ -58,6 +58,8 @@ public class Snowy : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1f;
+
         playerSpawn = GameObject.FindGameObjectWithTag("PlayerSpawn").transform;
         //Get the rigidbody
         rb = GetComponent<Rigidbody2D>();

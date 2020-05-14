@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7538722981445617637}
   - component: {fileID: 7538722981445617634}
-  - component: {fileID: 8263067559717436923}
   m_Layer: 0
   m_Name: ColdZone
   m_TagString: Cold
@@ -62,16 +61,3 @@ PolygonCollider2D:
       - {x: -2.706254, y: -2.6654072}
       - {x: 5.1523247, y: -3.1022053}
       - {x: 5.4500732, y: 2.4930077}
---- !u!114 &8263067559717436923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7538722981445617636}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 870d80e2728481c4e85587f2a68eb3c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  snowy: {fileID: 0}
