@@ -187,23 +187,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b252c5813a2bec740a007e270cdb6ace, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snowyHUD: {fileID: 0}
+  rb: {fileID: 2036799649882792246}
+  hud: {fileID: 0}
   animator: {fileID: 2036799649882792242}
   groundcheck: {fileID: 2036799647846944809}
+  wallCheckL: {fileID: 8908368868065318357}
+  wallCheckR: {fileID: 255424999367298614}
   checkRadius: 0.2
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
   baseSpeed: 5
-  isGrounded: 0
+  growthState: 0
+  health: 15
+  damage: 0
   baseJumpForce: 6
   extraJumpsValue: 0
   isDashing: 0
   baseDashSpeed: 20
   startDashTime: 0.3
   cooldownDash: 2.5
-  zoneTimer: 2
-  actualZoneTimer: 0
 --- !u!1 &4594368643705693348
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,7 +219,7 @@ GameObject:
   m_Layer: 0
   m_Name: WallCheckRight
   m_TagString: Untagged
-  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -246,7 +249,7 @@ GameObject:
   m_Layer: 0
   m_Name: WallCheckLeft
   m_TagString: Untagged
-  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1

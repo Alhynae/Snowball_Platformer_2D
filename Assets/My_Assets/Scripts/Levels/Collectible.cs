@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Collectible : MonoBehaviour
 {
@@ -9,7 +10,6 @@ public class Collectible : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision){
         if ( collision.CompareTag("Player")){
             Destroy(this.gameObject);
-
             scoring.AddScore(1);
         }
     }

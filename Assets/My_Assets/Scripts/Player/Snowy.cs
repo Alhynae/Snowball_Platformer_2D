@@ -20,6 +20,7 @@ public class Snowy : MonoBehaviour
     private float speed;
     public int growthState;
     public float health;
+    public int damage;
 
 
     //Checker
@@ -79,6 +80,18 @@ public class Snowy : MonoBehaviour
         //Animation Sprite
         this.animator.SetFloat("Speed", Mathf.Abs(moveInput));
         this.animator.SetBool("isDashing", isDashing);
+
+        /*if (this.rb.velocity.y == 0){
+            this.animator.SetBool("isJumping", false);
+            this.animator.SetBool("isFalling", false);
+        } else if (this.rb.velocity.y < 0){
+            this.animator.SetBool("isJumping", false);
+            this.animator.SetBool("isFalling", true);
+        } else if (this.rb.velocity.y > 0){
+            this.animator.SetBool("isJumping", true);
+            this.animator.SetBool("isFalling", false);
+        }*/
+        
         
         //Function
         Growth();
