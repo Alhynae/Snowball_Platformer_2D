@@ -8,6 +8,8 @@ TagManager:
   - Cold
   - Heat
   - ResetTimer
+  - 2DLights
+  - Background
   layers:
   - Default
   - TransparentFX
