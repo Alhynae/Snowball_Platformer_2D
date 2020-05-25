@@ -9,8 +9,10 @@ public class PauseMenu : MonoBehaviour
 
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
-    public AudioMixer audioMixer;
+    public AudioMixer mainMixer;
+     public AudioMixer soundMixer;
     public AudioSource ost;
+    public AudioClip pausedSound;
     void Update()
     {
 
@@ -18,9 +20,11 @@ public class PauseMenu : MonoBehaviour
         {
             if (GameIsPaused)
             {
+                ost.PlayOneShot(pausedSound);
                 Resume();
             } else
             {
+                ost.PlayOneShot(pausedSound);
                 Pause();
             }
         }
@@ -55,7 +59,12 @@ public class PauseMenu : MonoBehaviour
     
     public void SetVolume (float volume)
     {
-        audioMixer.SetFloat("Volume", volume);
+        mainMixer.SetFloat("Volume", volume);
+    }
+
+     public void SetSound(float volume)
+    {
+        soundMixer.SetFloat("Sound", volume);
     }
 
 }
