@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Snowy : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class Snowy : MonoBehaviour
     public Transform wallCheckR;
     public float checkRadius;
     public LayerMask whatIsGround;
+    public AudioSource audiosource;
+    public AudioClip dashSound;
+    public AudioClip jumpSound;
 
     //Sats
     public float baseSpeed;
@@ -132,10 +136,12 @@ public class Snowy : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Space) && this.extraJumps > 0)
         {
+            audiosource.PlayOneShot(jumpSound);
             this.rb.velocity = Vector2.up * jumpForce;
             this.extraJumps--;
         } else if (Input.GetKeyDown(KeyCode.Space) && this.extraJumps == 0 && this.isGrounded == true)
         {
+            audiosource.PlayOneShot(jumpSound);
             this.rb.velocity = Vector2.up * jumpForce;
         }
 
@@ -180,6 +186,7 @@ public class Snowy : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.LeftShift) && this.cooldownDashTimer == 0)
                 {
+                    audiosource.PlayOneShot(dashSound);
                     this.cooldownDashTimer = cooldownDash;
                     if (this.moveInput < 0)
                     {
